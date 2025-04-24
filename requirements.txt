@@ -1,0 +1,10 @@
+flask
+flask-cors
+requests
+python-dotenv
+
+# Google Gemini API SDK
+google-generativeai
+
+# Optional: if you later use LangChain for prompt chaining
+# langchain
