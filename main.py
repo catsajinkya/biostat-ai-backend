@@ -1,5 +1,6 @@
 from flask import Flask
 from api1 import api1_bp
+from api1.routes import ApiRouter
 from api2 import api2_bp
 from flask_cors import CORS
 from dotenv import load_dotenv
@@ -11,6 +12,8 @@ CORS(app)
 # Register Blueprints
 app.register_blueprint(api1_bp, url_prefix="/api1")
 app.register_blueprint(api2_bp, url_prefix="/api2")
+app.register_blueprint(ApiRouter)
+
 
 if __name__ == "__main__":
     app.run(debug=True)
