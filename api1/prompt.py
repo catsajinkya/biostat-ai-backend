@@ -1,10 +1,18 @@
+from .gemini_utils import call_gemini
 import json
 
-def build_prompt_from_report(report_data: dict) -> str:
-    return f"""
-You are a medical assistant. Summarize the following medical report for a patient in simple, clear language.
- Include key health information, diagnosis, test results, and any recommendations or next steps.
+def summarize_report(report_data):
+    prompt = f"""
+You are an experienced medical assistant. Given the following diagnostic report JSON, generate a clear and concise **summary** with **actionable health insights** for the doctor and patient.
 
-Report JSON:
+- Use plain English.
+- Do NOT use Markdown or special formatting.
+- Highlight diagnosis, abnormal results, lab names, and suggestions.
+- Ignore internal codes unless medically relevant.
+
+JSON:
 {json.dumps(report_data, indent=2)}
 """
+
+    summary = call_gemini(prompt)
+    return summary.strip()
